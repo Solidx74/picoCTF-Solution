@@ -1,0 +1,8 @@
+1.Go to the website.
+2.It requires a username and password.
+3.Let's inspect the website for any clues.
+4.Put a random username and password in the website and then inspect.
+5.Nothing special, Let's go to debugger. we will find 1 php file and secure.js file .
+6.Let's open secure.js file. There we go .
+7.We can clearly see a username and the password. You better know what to do with it.
+Problem solved.
