@@ -1,0 +1,97 @@
+1. To solve this problem , we must use vscode or something similar . we can't webshell for this problem.
+2.Open your terminal do the following : 
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+fixme2.tar.gz
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ gzip -d fixme2.tar.gz
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+fixme2.tar
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ tar -xvf fixme2.tar
+fixme2/
+fixme2/Cargo.toml
+fixme2/Cargo.lock
+fixme2/src/
+fixme2/src/main.rs
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+fixme2  fixme2.tar
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ cd fixme2   
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/fixme2]
+└─$ ls
+Cargo.lock  Cargo.toml  src
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/fixme2]
+└─$ cd src   
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/fixme2/src]
+└─$ ls
+main.rs
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/fixme2/src]
+└─$ cat main.rs
+
+
+3.From here, you will get a wrong code. you need to fix it using the hint 1.
+4. Try to solve the code yourself .
+5.The required rust code is:
+
+use xor_cryptor::XORCryptor; // Import XORCryptor to use for decryption
+
+// Decrypt function
+fn decrypt(encrypted_buffer: Vec<u8>, borrowed_string: &mut String) {
+    // Key for decryption
+    let key = String::from("CSUCKS");
+
+    // Editing the borrowed string by adding a message before decryption
+    borrowed_string.push_str("PARTY FOUL! Here is your flag: ");
+
+    // Create decryption object
+    let res = XORCryptor::new(&key); // Create a new XORCryptor using the key
+
+    // Handle error if creation fails
+    if res.is_err() {
+        return; // Early return in case of error
+    }
+    let xrc = res.unwrap(); // Unwrap the successful result
+
+    // Decrypt the buffer using the `decrypt_vec` method
+    let decrypted_buffer = xrc.decrypt_vec(encrypted_buffer); // Use the decrypt_vec function
+    borrowed_string.push_str(&String::from_utf8_lossy(&decrypted_buffer)); // Convert to string and append to the borrowed string
+
+    // Print the final string with the decrypted flag
+    println!("{}", borrowed_string);
+}
+
+fn main() {
+    // Encrypted flag values as hexadecimal strings
+    let hex_values = ["41", "30", "20", "63", "4a", "45", "54", "76", "01", "1c", "7e", "59", "63", "e1", "61", "25", "0d", "c4", "60", "f2", "12", "a0", "18", "03", "51", "03", "36", "05", "0e", "f9", "42", "5b"];
+
+    // Convert the hexadecimal strings to bytes (Vec<u8>)
+    let encrypted_buffer: Vec<u8> = hex_values.iter()
+        .map(|&hex| u8::from_str_radix(hex, 16).unwrap()) // Convert each hex string to u8
+        .collect(); // Collect into a Vec<u8> (buffer)
+
+    // Initialize a mutable string with a message
+    let mut party_foul = String::from("Using memory unsafe languages is a: ");
+
+    // Call the decrypt function and pass the mutable reference to the string
+    decrypt(encrypted_buffer, &mut party_foul); // Pass as mutable reference
+}
+
+6.Open your vscode terminal . Use the following command:
+┌──(kali㉿kali)-[~/main]
+└─$ cargo run 
+7.The terminal should show the flag. Problem solved.
