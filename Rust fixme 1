@@ -1,0 +1,85 @@
+1. To solve this problem , we must use vscode or something similar . we can't webshell for this problem.
+2.Open your terminal do the following :
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ cargo new main       
+    Creating binary (application) `main` package
+note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+                                                                                                                                                                   
+┌──(kali㉿kali)-[~/main]
+└─$ cargo add xor_cryptor
+    Updating crates.io index
+
+      Adding xor_cryptor v2.0.4 to dependencies
+    Updating crates.io index
+    Blocking waiting for file lock on package cache
+     Locking 22 packages to latest Rust 1.85.0 compatible versions
+      Adding byteorder v1.5.0
+      Adding cfg-if v1.0.0
+      Adding crossbeam-deque v0.8.6
+      Adding crossbeam-epoch v0.9.18
+      Adding crossbeam-utils v0.8.21
+      Adding either v1.15.0
+      Adding getrandom v0.2.15
+      Adding libc v0.2.170
+      Adding ppv-lite86 v0.2.20
+      Adding proc-macro2 v1.0.94
+      Adding quote v1.0.39
+      Adding rand v0.8.5
+      Adding rand_chacha v0.3.1
+      Adding rand_core v0.6.4
+      Adding rayon v1.10.0
+      Adding rayon-core v1.12.1
+      Adding syn v2.0.99
+      Adding unicode-ident v1.0.18
+      Adding wasi v0.11.0+wasi-snapshot-preview1
+      Adding xor_cryptor v2.0.4
+      Adding zerocopy v0.7.35
+      Adding zerocopy-derive v0.7.35
+
+┌──(kali㉿kali)-[~]
+└─$ cd main       
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/main]
+└─$ code . 
+
+
+
+3.Now you will be redirected to vscode.You need to fix the rust code . Try it yourself or just copy :
+
+
+
+use xor_cryptor::XORCryptor;
+
+fn main() {
+    // Key for decryption
+
+    let key = String::from("CSUCKS"); // Fixed: Added semicolon to end the statement
+
+    // Encrypted flag values
+
+    let hex_values = ["41", "30", "20", "63", "4a", "45", "54", "76", "01", "1c", "7e", "59", "63", "e1", "61", "25", "7f", "5a", "60", "50", "11", "38", "1f", "3a", "60", "e9", "62", "20", "0c", "e6", "50", "d3", "35"];
+
+    // Convert the hexadecimal strings to bytes and collect them into a vector
+
+    let encrypted_buffer: Vec<u8> = hex_values.iter()
+        .map(|&hex| u8::from_str_radix(hex, 16).unwrap())
+        .collect();
+
+    // Create decryption object
+
+    let res = XORCryptor::new(&key);
+    if res.is_err() {
+        return; // Fixed: Used return to exit the function
+    }
+    let xrc = res.unwrap();
+
+    // Decrypt flag and print it out
+
+    let decrypted_buffer = xrc.decrypt_vec(encrypted_buffer);
+    println!("{}", String::from_utf8_lossy(&decrypted_buffer)); // Fixed: Corrected println syntax to print a variable
+}
+
+4.Now run the code .It shall show the flag in the terminal.Problem solved.
+
+
