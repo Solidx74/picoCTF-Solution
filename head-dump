@@ -1,0 +1,10 @@
+1.After launching instance, you will be redirected to a website.
+2.There are 2 hints given.=> Explore backend development with us & The head was dumped.
+3.So, you can find by yourselves with the clue or click on #API Documentation .
+4.Here, you can diagnose memory allocations and as per our hint we know that our head was dumped .
+5. After executing /heapdump , copy this URL :http://verbal-sleep.picoctf.net:58177/heapdump
+6.Paste it in your searchbox and it will download a heapdump(.hprof) file.
+7.Now we need to analyze it . 
+8.Go to https://fastthread.io/ .
+9.Upload your heap dump (.hprof).
+10.Wait for the analysis report.You will find the flag there. Problem solved.
