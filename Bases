@@ -1,0 +1,4 @@
+1.We can assume the given base is base64.
+2. Go to " https://www.base64decode.org/ " and paste your base64 encrypted text.  [bDNhcm5fdGgzX3IwcDM1]
+3.Then you will get a text format .
+4. The flag would be picoCTF{that_text_format} .
