@@ -1,0 +1,26 @@
+1.Download files.
+2.Go to terminal and follow the steps:
+
+
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+level1.flag.txt.enc  level1.py
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ cat level1.flag.txt.enc
+A
+ Rr1w▒Q nVT_nPRVW▒                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ nano level1.py
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ python level1.py  -d level1.flag.txt.enc
+Please enter correct password for flag: 1e1a
+Welcome back... your flag, user:
+
+
+
+3. Thus,you should get the flag. Problem solved.
