@@ -1,0 +1,14 @@
+1.Download the file.
+2.Go to terminal and type just like below- 
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+file
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ strings file| grep "picoCTF"
+
+
+3. THus , you should get the flag. Problem solved.
