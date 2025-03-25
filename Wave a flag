@@ -1,0 +1,36 @@
+1. Download the program.
+2. Go to Terminal and do such as i did . 
+
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+warm
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ wget https://mercury.picoctf.net/static/b28b6021d6040b086c2226ebeb913bc2/warm
+--2025-03-25 11:15:41--  https://mercury.picoctf.net/static/b28b6021d6040b086c2226ebeb913bc2/warm
+Resolving mercury.picoctf.net (mercury.picoctf.net)... 18.189.209.142
+Connecting to mercury.picoctf.net (mercury.picoctf.net)|18.189.209.142|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10936 (11K) [application/octet-stream]
+Saving to: ‘warm.1’
+
+warm.1                                    100%[===================================================================================>]  10.68K  --.-KB/s    in 0s      
+
+2025-03-25 11:15:42 (317 MB/s) - ‘warm.1’ saved [10936/10936]
+
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ chmod +x warm
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ./warm
+Hello user! Pass me a -h to learn what I can do!
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ./warm -h
+Oh, help? I actually don't do much, but I do have this flag here : 
+
+3.Thus, you will find the flag.
