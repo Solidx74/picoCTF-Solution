@@ -1,0 +1,93 @@
+1.Download the zip file.
+2.then go to terminal and after using cd Downloads, 
+
+
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+Addadshashanammu.zip
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ unzip Addadshashanammu.zip
+Archive:  Addadshashanammu.zip
+   creating: Addadshashanammu/
+   creating: Addadshashanammu/Almurbalarammi/
+   creating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/
+   creating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/
+   creating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/
+   creating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/
+   creating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/
+  inflating: Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku/fang-of-haynekhtnamet  
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+Addadshashanammu  Addadshashanammu.zip
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ cd Addadshashanammu                
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu]
+└─$ ls
+Almurbalarammi
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu]
+└─$ cd Almurbalarammi  
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu/Almurbalarammi]
+└─$ ls
+Ashalmimilkala
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu/Almurbalarammi]
+└─$ Ashalmimilkala
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu/Almurbalarammi/Ashalmimilkala]
+└─$ cd Ashalmimilkala
+cd: no such file or directory: Ashalmimilkala
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu/Almurbalarammi/Ashalmimilkala]
+└─$ ls
+Assurnabitashpi
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads/Addadshashanammu/Almurbalarammi/Ashalmimilkala]
+└─$ cd Assurnabitashpi
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi]
+└─$ ls
+Maelkashishi
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi]
+└─$ cd Assurnabitashpi
+cd: no such file or directory: Assurnabitashpi
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Addadshashanammu/Almurbalarammi/Ashalmimilkala/Assurnabitashpi]
+└─$ cd Maelkashishi   
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi]
+└─$ ls
+Onnissiralis
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Almurbalarammi/Ashalmimilkala/Assurnabitashpi/Maelkashishi]
+└─$ cd Onnissiralis
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis]
+└─$ ls
+Ularradallaku
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Ashalmimilkala/Assurnabitashpi/Maelkashishi/Onnissiralis]
+└─$ cd Ularradallaku
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku]
+└─$ ls
+fang-of-haynekhtnamet
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku]
+└─$ file fang-of-haynekhtnamet
+fang-of-haynekhtnamet: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=55548d0314fdf7999b966728d19712cdf8a52e58, not stripped
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/…/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku]
+8#TT 1tt$D���o�Nhaynekhtnamet
+�� ��0)@▒/ld-lin(;▒�                                                                                                                                                                                                        Y h "libc.so.6puts__cxa_finalize__libc_start_mainGLIBC_2.2.5_ITM_deregisterTMCloneTable__gmon_start___ITM_regist┌──(kali㉿kali)-[~/…/Assurnabitashpi/Maelkashishi/Onnissiralis/Ularradallaku]
+└─$ ./fang-of-haynekhtnamet -h
+*ZAP!* 
+
+
+3. THus, you will get the flag there.
