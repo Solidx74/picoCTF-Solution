@@ -1,0 +1,79 @@
+1.I solved the challenge and this is what my terminal looks like- 
+┌──(kali㉿kali)-[~]
+└─$ wget https://jupiter.challenges.picoctf.org/problem/36474/         
+--2025-03-25 12:16:43--  https://jupiter.challenges.picoctf.org/problem/36474/
+Resolving jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)... 3.131.60.8
+Connecting to jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)|3.131.60.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html                                    [ <=>                                                                                ]     431  --.-KB/s    in 0s      
+
+2025-03-25 12:16:45 (6.13 MB/s) - ‘index.html’ saved [431]
+
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ wget https://jupiter.challenges.picoctf.org/problem/36474/robots.txt
+--2025-03-25 12:16:54--  https://jupiter.challenges.picoctf.org/problem/36474/robots.txt
+Resolving jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)... 3.131.60.8
+Connecting to jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)|3.131.60.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36 [text/plain]
+Saving to: ‘robots.txt’
+
+robots.txt                                100%[===================================================================================>]      36  --.-KB/s    in 0s      
+
+2025-03-25 12:16:55 (76.3 MB/s) - ‘robots.txt’ saved [36/36]
+
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ ls
+ aws   bin   Desktop   Documents   Downloads  'HTB machines'   Hudai   index.html   main   Music   Pictures   Public   robots.txt   Templates   Videos
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ cat robots.txt
+User-agent: *
+Disallow: /477ce.html
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ wget https://jupiter.challenges.picoctf.org/problem/36474/477ce.html                                           
+--2025-03-25 12:17:40--  https://jupiter.challenges.picoctf.org/problem/36474/477ce.html
+Resolving jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)... 3.131.60.8
+Connecting to jupiter.challenges.picoctf.org (jupiter.challenges.picoctf.org)|3.131.60.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 453 [text/html]
+Saving to: ‘477ce.html’
+
+477ce.html                                100%[===================================================================================>]     453  --.-KB/s    in 0s      
+
+2025-03-25 12:17:41 (8.76 MB/s) - ‘477ce.html’ saved [453/453]
+
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ ls
+ 477ce.html   aws   bin   Desktop   Documents   Downloads  'HTB machines'   Hudai   index.html   main   Music   Pictures   Public   robots.txt   Templates   Videos
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~]
+└─$ cat 477ce.html
+<!doctype html>
+<html>
+  <head>
+    <title>Where are the robots</title>
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="content">
+        <p>Guess you found the robots<br />
+          <flag>.....................................</flag></p>
+      </div>
+      <footer></footer>
+  </body>
+</html>
+
+
+2. THus, you will get the flag in the html section.
+Problem solved.
