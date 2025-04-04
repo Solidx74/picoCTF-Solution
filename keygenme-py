@@ -1,0 +1,38 @@
+1.Download the python file.
+2.open the pyhton file and edit it like-
+
+import hashlib
+
+# Compute the SHA-256 hash of the username "GOUGH"
+username_trial = b"GOUGH"
+hash_digest = hashlib.sha256(username_trial).hexdigest()
+
+# Extract characters from specific indices to form the dynamic part
+dynamic_part = [
+    hash_digest[4],
+    hash_digest[5],
+    hash_digest[3],
+    hash_digest[6],
+    hash_digest[2],
+    hash_digest[7],
+    hash_digest[1],
+    hash_digest[8]
+]
+
+# Combine to form the dynamic part of the key
+dynamic_key = ''.join(dynamic_part)
+
+# Construct the full flag
+flag = f"picoCTF{{1n_7h3_|<3y_of_{dynamic_key}}}"
+print(flag)
+
+
+3.Run the program in terminal .
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ python y.py        
+
+
+4. You will get your flag.Problem solved.
