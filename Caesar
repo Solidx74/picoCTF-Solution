@@ -1,0 +1,4 @@
+1.Download the file.
+2.Go to https://www.dcode.fr/  . 
+3.Search caesar cipher . and then paste the file text to decrypt using bruteforce.
+4.You should find the flag there:picoCTF{ file }
