@@ -1,0 +1,12 @@
+1.Download the file.
+2.Go to terminal.
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+garden.jpg
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ strings garden.jpg
+3.You will get the flag from here .
