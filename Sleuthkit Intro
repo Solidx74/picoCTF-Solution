@@ -1,0 +1,36 @@
+1.At first launch the instance and download the files. 
+2.Go to terminal and follow the steps:
+
+
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads 
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+disk.img.gz
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ gunzip disk.img.gz 
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+disk.img
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ mmls disk.img
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000002047   0000002048   Unallocated
+002:  000:000   0000002048   0000204799   0000202752   Linux (0x83)
+                                                                                                                                                                      
+┌──(kali㉿kali)-[~/Downloads]
+└─$ nc saturn.picoctf.net 58639
+What is the size of the Linux partition in the given disk image?
+Length in sectors: 0000202752            
+0000202752
+Great work!
+3. Now, You should get the flag pretty easily.Problem solved.
