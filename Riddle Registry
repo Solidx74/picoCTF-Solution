@@ -1,0 +1,42 @@
+Solution Walkthrough for Riddle Registry
+Step 1: Initial Analysis
+
+First, I downloaded the PDF file and performed basic reconnaissance using exiftool, a powerful tool for extracting metadata from files:
+bash
+
+exiftool confidential.pdf
+
+Step 2: Examining the Metadata
+
+The exiftool output revealed important metadata about the PDF:
+text
+
+ExifTool Version Number         : 13.25
+File Name                       : confidential.pdf
+Directory                       : .
+File Size                       : 183 kB
+File Modification Date/Time     : 2026:02:21 18:09:59-05:00
+File Access Date/Time           : 2026:02:21 18:11:30-05:00
+File Inode Change Date/Time     : 2026:02:21 18:09:59-05:00
+File Permissions                : -rw-rw-r--
+File Type                       : PDF
+File Type Extension             : pdf
+MIME Type                       : application/pdf
+PDF Version                     : 1.7
+Linearized                      : No
+Page Count                      : 1
+Producer                        : PyPDF2
+Author                          : cGljb0NURntwdXp6bDNkX20zdGFkYXRhX2YwdW5kIV8zNTc4NzM5YX0=
+
+Step 3: Identifying the Hidden Data
+
+The key finding was in the Author field, which contained what appeared to be a base64-encoded string:
+
+cGljb0NURntwdXp6bDNkX20zdGFkYXRhX2YwdW5kIV8zNTc4NzM5YX0=
+
+Base64 encoding is commonly used in CTF challenges to hide plaintext data. The string ended with an equals sign (=), which is a telltale padding character used in base64 encoding.
+Step 4: Decoding the Base64 String
+
+I decoded the string using the base64 command-line utility:
+
+echo "cGljb0NURntwdXp6bDNkX20zdGFkYXRhX2YwdW5kIV8zNTc4NzM5YX0=" | base64 -d
