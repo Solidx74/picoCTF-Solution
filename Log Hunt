@@ -1,0 +1,15 @@
+Solution Approach for Log Hunt
+Step 1: Examine the log file
+
+The log contains various system events (INFO, WARN, ERROR, DEBUG) with timestamps. Among these, there are special "FLAGPART" entries that contain pieces of the flag.
+Step 2: Extract FLAGPART lines
+
+grep FLAGPART server.log
+
+
+Step 3: Then Remove duplicates and sort chronologically
+
+
+grep FLAGPART server.log | sort -u
+
+You should get the flag then.
