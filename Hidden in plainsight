@@ -1,0 +1,53 @@
+Solution Approach for Hidden in plainsight
+Step 1: Examine the image metadata
+
+The first step is to check if the image contains any hidden information in its metadata using exiftool:
+bash
+
+exiftool img.jpg
+
+This reveals a comment field with what appears to be base64 encoded data:
+text
+
+Comment                         : c3RlZ2hpZGU6Y0VGNmVuZHZjbVE9
+
+Step 2: Decode the base64 comment
+
+The comment is base64 encoded, so we decode it:
+bash
+
+echo "c3RlZ2hpZGU6Y0VGNmVuZHZjbVE9" | base64 -d
+
+This gives us another encoded string: steghide:cEF6endvcmQ=
+Step 3: Perform second base64 decoding
+
+The result from step 2 contains another base64 string after the colon:
+bash
+
+echo "cEF6endvcmQ=" | base64 -d
+
+This reveals the password: pAzzword
+
+The format "steghide:password" suggests we need to use the steghide tool with this password.
+Step 4: Install steghide (if not already installed)
+bash
+
+sudo apt update
+sudo apt install steghide
+
+Step 5: Extract hidden data from the image
+
+Using steghide with the discovered password:
+bash
+
+steghide extract -sf img.jpg -p pAzzword
+
+Output:
+text
+
+wrote extracted data to "flag.txt".
+
+Step 6: View the extracted flag
+bash
+
+cat flag.txt
