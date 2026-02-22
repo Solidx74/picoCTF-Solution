@@ -1,0 +1,56 @@
+Solution Approach for Flag in Flame
+
+
+Step 1: Initial File Analysis
+
+We begin with a file named logs.txt in the Downloads directory:
+bash
+
+┌──(kali㉿kali)-[~]
+└─$ cd Downloads
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/Downloads]
+└─$ ls
+logs.txt
+
+Step 2: Decoding Base64 Content
+
+The logs.txt file contains Base64-encoded data. We decode it and save the output as a JPEG image:
+bash
+
+┌──(kali㉿kali)-[~/Downloads]
+└─$ cat logs.txt | base64 -d >> demo.jpeg
+
+What happened here:
+
+    The cat command reads the contents of logs.txt
+
+    The output is piped (|) to the base64 -d command, which decodes Base64 data
+
+    The decoded data is redirected (>>) to a new file called demo.jpeg
+
+Step 3: Image Analysis
+
+After generating demo.jpeg, the file was examined. The image appeared to be a standard JPEG, but visual inspection didn't immediately reveal the flag.
+Step 4: Using Google Lens for Reverse Image Search
+
+The image was uploaded to Google Lens (or Google Reverse Image Search) to see if it contained any hidden patterns or text that wasn't immediately visible to the naked eye.
+
+Result: The image contained or was associated with a hexadecimal string.
+Step 5: Hexadecimal Decoding
+
+The discovered hexadecimal string was then processed using an online hex decoder:
+
+Tool used: https://cryptii.com/pipes/hex-decoder
+
+Process:
+
+    Navigated to the cryptii hex decoder page
+
+    Pasted the hexadecimal string into the input field
+
+    The decoder converted the hex to ASCII text
+
+Step 6: Flag Retrieval
+
+The hexadecimal decoding revealed the flag in plain text.
