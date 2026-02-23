@@ -1,0 +1,48 @@
+ Solution Approach For Scavenger Hunt
+The challenge involves finding five hidden parts of a flag across different files on the website. Here is the step-by-step method:
+
+First Part: HTML Comment
+
+Visit the main page: http://mercury.picoctf.net:44070/
+
+Open the page's source code (usually Ctrl+U or right-click → "View Page Source").
+
+Look for an HTML comment (<!-- ... -->). The first part of the flag is hidden there.
+
+Second Part: CSS File
+
+In the source code, find the tag linking the CSS file (e.g., mycss.css).
+
+Access the CSS file directly: http://mercury.picoctf.net:44070/mycss.css (or whatever the filename is).
+
+The second part of the flag is commented out within the CSS file.
+
+Third Part: robots.txt
+
+The JavaScript file contains a hint about preventing Google from indexing the site.
+
+Access the standard robots.txt file: http://mercury.picoctf.net:44070/robots.txt
+
+This file will contain the third part of the flag.
+
+Fourth Part: .htaccess
+
+The robots.txt file mentions an Apache server and asks if you can access the next flag.
+
+Try accessing the Apache directory-level configuration file: http://mercury.picoctf.net:44070/.htaccess
+
+This file will reveal the fourth part of the flag.
+
+Fifth Part: .DS_Store
+
+The .htaccess file contains a hint about making websites on a Mac and storing lots of information.
+
+This points to the macOS system file .DS_Store.
+
+Access the file: http://mercury.picoctf.net:44070/.DS_Store
+
+Opening or downloading this file will provide the final part of the flag.
+
+Combine the Flag
+
+Once you have all five parts, combine them in the correct order to form the complete flag. The flag format is typically picoCTF{...}.
