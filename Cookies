@@ -1,0 +1,58 @@
+Challenge Description
+Who doesn’t love cookies? Try to figure out the best one.
+http://mercury.picoctf.net:17781/
+
+This challenge involves manipulating a cookie to retrieve a flag. The web application sets a cookie based on user input, and the flag is revealed when the correct cookie value is supplied.
+
+Step-by-Step Solution
+1. Initial Exploration
+Open the given URL in a browser. You'll see a simple page with a search box and a button. Enter any random text, e.g., kamal, and click Search. The page responds with:
+
+text
+That doesn't appear to be a valid cookie.
+Capture this interaction using Burp Suite (or your browser's developer tools). Notice that after submitting the form, a POST request is sent to /search, and the server responds with a 302 Found redirect to the home page. The response also sets a cookie:
+
+text
+Set-Cookie: name=-1;
+So the cookie name is initially set to -1 for an invalid input.
+
+2. Discovering a Known Cookie Value
+The page hints at cookies. Try entering snickerdoodle (a classic cookie name) in the search box. Submit it. This time the message changes to:
+
+text
+That is a cookie! Not very special though...
+Again, a POST to /search returns a 302 redirect, but now to /check instead of the home page. The cookie is set to:
+
+text
+Set-Cookie: name=0;
+3. Exploring the /check Endpoint
+After the redirect, the browser automatically requests /check. In Burp, you can capture this GET request. It includes the cookie name=0. The response body contains a message like:
+
+text
+I love snickerdoodle cookies!
+Now, modify the cookie value in the request. Send the /check request to Repeater and change the cookie to name=1. The response changes to something like:
+
+text
+I love chocolate chip cookies!
+Trying name=2 gives:
+
+text
+I love gingerbread cookies!
+So each number corresponds to a different cookie type.
+
+4. Brute-Forcing the Correct Value
+The flag is likely hidden behind one of these cookie values. Since we don't know the exact number, we can brute-force it.
+
+Use Intruder in Burp Suite:
+
+Send the /check request to Intruder.
+
+Set a payload position on the cookie value: Cookie: name=§0§
+
+Choose Payload type: Numbers.
+
+Set range from, say, 0 to 30 (or higher if needed).
+
+Start the attack.
+
+Observe the response lengths. Most responses will have similar lengths, but one will stand out. In this challenge, the value 18 produces a response with a different length and contains the flag.
