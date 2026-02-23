@@ -1,0 +1,84 @@
+Challenge Description
+
+The challenge presents a simple HTML page that discusses "include directives" in programming. The page references external CSS and JavaScript files, with the hint: "Is there more code than what the inspector initially shows?"
+Initial Analysis
+
+The HTML file contains:
+
+    Basic structure with <head> and <body>
+
+    Link to style.css
+
+    Script reference to script.js
+
+    A button that calls a greetings() function
+
+Step-by-Step Solution
+1. View Page Source
+
+First, examine the HTML source:
+html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>On Includes</title>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <button type="button" onclick="greetings();">Say hello</button>
+  </body>
+</html>
+
+2. Check External JavaScript File
+
+Navigate to /script.js to examine the JavaScript code:
+javascript
+
+function greetings()
+{
+    // Function to display time-appropriate greeting
+    let date_time = new Date();
+    let hours = date_time.getHours();
+    // ... greeting logic ...
+    alert(greetings + ", " + date_time);
+}
+
+// Hidden flag parts in console output and comments
+console.log("picoCTF{1nclu51v17y_1of2_");
+//  f7w_2of2_df589022}
+
+Discovery:
+
+    First flag part in console.log() statement
+
+    Second flag part in a JavaScript comment
+
+3. Check External CSS File
+
+Navigate to /style.css to examine the stylesheet:
+css
+
+body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  background-color: teal;
+  /* ... other styles ... */
+}
+
+/* 7d5e6f8b} */  /* Potential red herring or alternate flag part */
+
+4. Check Browser Console
+
+Open browser developer tools (F12) and view the Console tab to see:
+text
+
+picoCTF{1nclu51v17y_1of2_
+
+5. Assemble the Flag
+
+Combine the discovered parts:
+
+    From console.log(): picoCTF{1nclu51v17y_1of2_
+
+    From JavaScript comment: f7w_2of2_df589022}
