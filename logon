@@ -1,0 +1,83 @@
+Solution Approach for PicoCTF 2019 "Logon" Challenge
+Challenge Overview
+Event: PicoCTF 2019
+
+Category: Web Exploitation
+
+Challenge Name: Logon
+
+Difficulty: Easy
+
+Goal: Login as "Joe" to retrieve the flag
+
+Step-by-Step Solution
+Step 1: Initial Reconnaissance
+Access the challenge URL: https://jupiter.challenges.picoctf.org/problem/44573/
+
+Observe the login page: Simple form with username and password fields
+
+Read the hint: "The factory is hiding things from all of its users" and "Hmm it doesn't seem to check anyone's password, except for Joe's?"
+
+Step 2: Test Login Functionality
+Try random credentials (e.g., username: "test", password: "123")
+
+Observe the result: You get logged in successfully!
+
+Check for the flag: Navigate to the flag page but notice you can't access it
+
+Step 3: Analyze Network Traffic
+Open Browser Developer Tools (F12)
+
+Go to Network tab
+
+Attempt login again with random credentials
+
+Observe the requests:
+
+First request: 307 redirect
+
+Second request: Actual login POST request
+
+Flag endpoint requests: Similar pattern with redirects
+
+Step 4: Examine Request Headers
+Find the flag endpoint request in Network tab
+
+Inspect Request Headers - Notice two critical issues:
+
+Plain text credentials in headers
+
+Admin boolean flag: admin=False in the Cookie header
+
+Step 5: Exploit the Vulnerability
+The admin flag suggests client-side authorization - easily manipulable!
+
+Method 1: Using Browser Developer Tools
+After logging in with any credentials
+
+Open Developer Tools → Application tab → Cookies
+
+Change the admin value from False to True
+
+Refresh the flag page
+
+Method 2: Using cURL (Recommended)
+Copy the flag request as cURL:
+
+In Network tab, right-click on flag request
+
+Select Copy → Copy as cURL
+
+Modify the cURL command:
+
+bash
+# Original command (with admin=False)
+curl 'https://jupiter.challenges.picoctf.org/problem/44573/flag' \
+  -H 'Cookie: password=random; username=test; admin=False' \
+  --compressed
+
+# Modified command (admin=True)
+curl 'https://jupiter.challenges.picoctf.org/problem/44573/flag' \
+  -H 'Cookie: password=random; username=test; admin=True' \
+  --compressed
+Execute the modified command in terminal and it should show the flag.
