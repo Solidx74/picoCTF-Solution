@@ -1,0 +1,74 @@
+Problem Analysis:
+
+The program is a lyric reader that processes a song/poem with special commands:
+
+    [REFRAIN] - Marks the start of a chorus section
+
+    RETURN - Marks where to return after a refrain
+
+    REFRAIN - Command to jump to the refrain section
+
+    CROWD - Prompts for user input and replaces the line
+
+    END - Terminates the program
+
+The vulnerability lies in how the program handles the CROWD input and the RETURN mechanism.
+Solution Approach
+
+Here's a step-by-step solution for a GitHub README:
+markdown
+
+# PicoCTF: verbal-sleep Challenge Solution
+
+## Challenge Overview
+This reverse engineering challenge presents a lyrical poem parser with hidden control flow mechanisms. The goal is to extract the flag embedded in the song's introduction by manipulating the program's execution flow.
+
+## Vulnerability Analysis
+
+The key vulnerability exists in the `reader()` function's handling of two mechanisms:
+
+1. **CROWD Input**: When encountering a line matching `r"CROWD.*"`, the program:
+   - Prompts for user input with `input('Crowd: ')`
+   - Replaces the current line with `'Crowd: ' + user_input`
+   - Increments the instruction pointer (`lip += 1`)
+
+2. **RETURN Mechanism**: The program dynamically updates the return address:
+   ```python
+   if line == 'REFRAIN':
+       song_lines[refrain_return] = 'RETURN ' + str(lip + 1)
+       lip = refrain
+
+Exploitation Strategy
+
+The key insight is that the CROWD input allows us to inject arbitrary text that becomes part of the song lyrics. By carefully crafting our input, we can:
+
+    Trigger the REFRAIN mechanism to expose the flag
+
+    Control the return address to read the secret introduction
+
+Solution Steps
+Step 1: Connect to the Service
+bash
+
+nc verbal-sleep.picoctf.net 56669
+
+Step 2: First Interaction
+
+When prompted with the first "Crowd:" after the initial refrain, input:
+text
+
+;RETURN 1
+
+This input:
+
+    The semicolon ends the current line
+
+    RETURN 1 becomes a command that jumps back to line 1
+
+    Creates an infinite loop of the first verse and refrain
+
+Step 3: Flag Exposure
+
+After the infinite loop begins, you'll see the first verse followed by the refrain. When prompted with "Crowd:" again, simply press Enter (empty input). This causes the program to:
+
+    Continue execution past the refrain. Now flag is shown .
