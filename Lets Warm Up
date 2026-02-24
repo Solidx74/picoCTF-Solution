@@ -1,0 +1,31 @@
+Solution Approach for Lets Warm Up
+
+    Understanding the Problem
+
+        The problem states that a word starts with 0x70 in hexadecimal.
+
+        We need to find what this starting character would be in ASCII.
+
+        Finally, wrap the result in picoCTF{} to form the flag.
+
+    Hexadecimal to Decimal Conversion
+
+        Hexadecimal 0x70 means:
+
+            First digit 7 is in the 16¹ place
+
+            Second digit 0 is in the 16⁰ place
+
+        Formula: (7 × 16¹) + (0 × 16⁰)
+
+        Calculation: (7 × 16) + 0 = 112 + 0 = 112 (decimal)
+
+    Decimal to ASCII Conversion
+
+        ASCII value 112 corresponds to the lowercase letter 'p'
+
+        (Reference: Standard ASCII table shows 97='a', 98='b', ..., 112='p')
+
+    Flag Formation
+
+        The character found is p
