@@ -1,0 +1,65 @@
+Solution Approach for Intro to Burp
+Challenge Description
+
+Website: http://titan.picoctf.net:58401
+Objective: Find the flag by exploiting improper input validation
+Approach Summary
+
+This challenge demonstrates a common web security vulnerability where insufficient input validation leads to information disclosure. The flag is obtained by manipulating the OTP (One-Time Password) field in a POST request.
+Detailed Solution Steps
+Step 1: Reconnaissance
+
+    Use Burp Suite to intercept and analyze traffic
+
+    Identify endpoints: / and /dashboard
+
+    Note HTTP methods: GET and POST requests for both endpoints
+
+Step 2: Initial Analysis
+text
+
+Endpoint Analysis:
+- GET  /          → 200 OK (HTML)
+- POST /          → 302 Redirect (HTML)
+- GET  /dashboard → 200 OK (HTML)
+- POST /dashboard → 200 OK (Text)
+
+Step 3: Request Manipulation
+
+    Send the /dashboard POST request to Repeater in Burp Suite
+
+    Identify the OTP parameter in the request body
+
+Step 4: Vulnerability Discovery
+
+Test the OTP field with different inputs:
+
+    Numeric OTP → "Invalid OTP" (expected behavior)
+
+    Text OTP → "Invalid OTP" (unexpected - no validation error)
+
+    Empty OTP → FLAG revealed (critical finding)
+
+Step 5: Flag Retrieval
+
+    Remove the OTP parameter entirely from the POST request
+
+    Send the modified request
+
+    Capture the flag from the server's response
+
+Key Vulnerability
+
+The server fails to validate the OTP field properly:
+
+    Accepts non-numeric input without validation errors
+
+    Does not enforce OTP presence requirement
+
+    When OTP is missing, falls back to revealing sensitive information
+
+Tools Used
+
+    Burp Suite (Proxy, Target, Repeater)
+
+    Web browser for initial access
